@@ -9,12 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class TourismController extends Controller
 {
-    // view tourism
-    public function view()
-    {
-        $tourisms = Tourism::orderBy('id', 'desc')->get();
-        return view('admin.tourism', compact('tourisms'));
-    }
+
 
     // add tourism
     public function create(Request $request)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Destination;
 use App\Models\DestinationPackage;
+use App\Models\DubaiSpecialPackage;
 use App\Models\Service;
 use App\Models\Tourism;
 use Illuminate\Http\Request;
@@ -73,7 +74,7 @@ class DetailViewsController extends Controller
 
         $details = $model->package->find($packageId);
         
-        return view('client.destination-package', [
+        return view('client.package', [
             'services' => $services,
             'destinations' => $destinations,
             'tourismpackages' => $tourismpackages,
@@ -87,6 +88,8 @@ class DetailViewsController extends Controller
         $services = Service::orderBy('id', 'desc')->get();
         $destinations = Destination::orderBy('id', 'desc')->get();
         $tourismpackages = Tourism::orderBy('id', 'desc')->get();
+
+        $destinationpackages = DestinationPackage::orderBy('id', 'desc')->get();
 
         $model = Tourism::with(['package' => function ($query) {
             $query->orderBy('id', 'desc');
@@ -106,8 +109,73 @@ class DetailViewsController extends Controller
             'services' => $services,
             'destinations' => $destinations,
             'tourismpackages' => $tourismpackages,
+            'destinationpackages' => $destinationpackages,
             'model' => $model,
             'packages' => $packages
+        ]);
+    }
+
+    public function viewTourismPackages($tourismId, $packageId)
+    {
+        $services = Service::orderBy('id', 'desc')->get();
+        $destinations = Destination::orderBy('id', 'desc')->get();
+        $tourismpackages = Tourism::orderBy('id', 'desc')->get();
+
+        $model = Tourism::with('package')->find($tourismId);
+
+        if (!$model) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Tourism not found',
+            ], 404);
+        }
+
+        $details = $model->package->find($packageId);
+        
+        return view('client.package', [
+            'services' => $services,
+            'destinations' => $destinations,
+            'tourismpackages' => $tourismpackages,
+            'model' => $model,
+            'details' => $details
+        ]);
+    }
+
+    // pass to dubaiSpecial
+    public function viewDubai()
+    {
+        $services = Service::orderBy('id', 'desc')->get();
+        $destinations = Destination::orderBy('id', 'desc')->get();
+        $tourismpackages = Tourism::orderBy('id', 'desc')->get();
+
+        $destinationpackages = DestinationPackage::orderBy('id', 'desc')->get();
+
+        $packages = DubaiSpecialPackage::orderBy('id', 'desc')->get();
+
+        return view('client.dubaispecialpackage', [
+            'services' => $services,
+            'destinations' => $destinations,
+            'tourismpackages' => $tourismpackages,
+            'destinationpackages' => $destinationpackages,
+            'packages' => $packages
+        ]);
+    }
+
+    public function viewDubaiPackages($id)
+    {
+        $services = Service::orderBy('id', 'desc')->get();
+        $destinations = Destination::orderBy('id', 'desc')->get();
+        $tourismpackages = Tourism::orderBy('id', 'desc')->get();
+
+        $model = 0;
+        $details = DubaiSpecialPackage::find($id);
+
+        return view('client.package', [
+            'services' => $services,
+            'destinations' => $destinations,
+            'tourismpackages' => $tourismpackages,
+            'model' => $model,
+            'details' => $details,
         ]);
     }
 }

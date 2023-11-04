@@ -10,12 +10,6 @@ use Illuminate\Support\Facades\Validator;
 class DestinationController extends Controller
 {
 
-    // view destination
-    public function view()
-    {
-        $destinations = Destination::orderBy('id', 'desc')->get();
-        return view('admin.destination', compact('destinations'));
-    }
 
     // add destination
     public function create(Request $request)

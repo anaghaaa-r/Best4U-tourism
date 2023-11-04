@@ -44,10 +44,9 @@
         <nav id="navbar" class="navbar nav-menu">
             <ul>
                 <li><a href="{{ url('/admin/dashboard') }}" class="nav-link scrollto"><i class="bx bxs-home"></i> <span>HOME</span></a></li>
-                <li><a href="{{ url('/admin/destinations') }}" class="nav-link scrollto"><i class="bx bxs-building-house"></i> <span>DESTINATIONS</span></a></li>
-                <li><a href="{{ url('/admin/tourismpackages') }}" class="nav-link scrollto active"><i class="bx bxs-briefcase"></i> <span>TOURISM PACKAGES</span></a></li>
-                <li><a href="{{ url('/admin/dubaispecialpackages') }}" class="nav-link scrollto"><i class="bx bxs-file-archive"></i> <span>DUBAI SPECIAL PACKAGES</span></a></li>
+                <li><a href="{{ url('/admin/packages') }}" class="nav-link scrollto active"><i class="bx bxs-building-house"></i> <span>PACKAGES</span></a></li>
                 <li><a href="{{ url('/admin/services') }}" class="nav-link scrollto"><i class="bx bxs-file-archive"></i> <span>SERVICES</span></a></li>
+                <li><a href="{{ url('/admin/blog') }}" class="nav-link scrollto"><i class="bx bxs-file-archive"></i> <span>BLOGS</span></a></li>
                 <li><a href="{{ url('/change-password') }}" class="nav-link scrollto"><i class="bx bxs-lock-open-alt"></i> <span>CHANGE PASSWORD</span></a></li>
             </ul>
         </nav><!-- .nav-menu -->
@@ -97,247 +96,247 @@
             </div>
 
             <h2>TOURISM PACKAGES</h2>
+            <div>
+                <!-- Add Modal -->
+                <button type="button" class="btn btn-all mt-2 mb-4" data-bs-toggle="modal" data-bs-target="#PackageAddModal">
+                    Add Packages
+                </button>
 
-            <!-- Add Modal -->
-            <button type="button" class="btn btn-all mt-2 mb-4" data-bs-toggle="modal" data-bs-target="#PackageAddModal">
-                Add Packages
-            </button>
+                <!-- Modal -->
+                <div class="modal fade" id="PackageAddModal" tabindex="-1" aria-labelledby="PackageAddModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="PackageAddModalLabel">Add Package</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{{ route('add.tourism.package', ['id' => $model->id]) }}" method="post" id="add-package-form" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+                                    <label for="title">Title</label>
+                                    <input type="text" name="title" id="title" class="form-control mb-2">
 
-            <!-- Modal -->
-            <div class="modal fade" id="PackageAddModal" tabindex="-1" aria-labelledby="PackageAddModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="PackageAddModalLabel">Add Package</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <label for="duration">Duration</label>
+                                    <input type="text" name="duration" id="duration" class="form-control mb-2">
+
+                                    <label for="thumbnail">Thumbnail Image</label>
+                                    <input type="file" name="thumbnail" id="thumbnail" class="form-control">
+                                    <p id="dimension-error" style="font-size: 13px; color: brown;"></p>
+                                    <p class="mb-2" style="font-size: 13px; color: brown;">*thumbnail dimension should be 770px X 308px</p>
+
+                                    <label for="image">Upload Image</label>
+                                    <input type="file" name="image" id="image" class="form-control mb-2">
+
+                                    <label for="tour_description">Tour Description</label>
+                                    <textarea name="tour_description" id="tour_description" cols="20" rows="10" class="form-control mb-2"></textarea>
+
+                                    <label for="price">Price</label>
+                                    <input type="text" name="price" id="price" class="form-control mb-2">
+
+                                    <label for="places_covered">Places Covered</label>
+                                    <textarea name="places_covered" id="places_covered" cols="5" rows="3" class="form-control"></textarea>
+                                    <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
+
+                                    <label for="tour_highlights">Tour Highlights</label>
+                                    <textarea name="tour_highlights" id="tour_highlights" cols="5" rows="3" class="form-control"></textarea>
+                                    <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
+
+                                    <label for="package_includes">Package Includes</label>
+                                    <textarea name="package_includes" id="package_includes" cols="5" rows="3" class="form-control"></textarea>
+                                    <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
+
+                                    <label for="package_excludes">Package Excludes</label>
+                                    <textarea name="package_excludes" id="package_excludes" cols="5" rows="3" class="form-control"></textarea>
+                                    <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
+
+                                    <label for="cancellation_policy">Cancellation Policy</label>
+                                    <textarea name="cancellation_policy" id="cancellation_policy" cols="20" rows="10" class="form-control mb-2"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-all">Add Package</button>
+                                </div>
+                            </form>
                         </div>
-                        <form action="{{ route('add.tourism.package', ['id' => $model->id]) }}" method="post" id="add-package-form" enctype="multipart/form-data">
-                            @csrf
-                            <div class="modal-body">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control mb-2">
-
-                                <label for="duration">Duration</label>
-                                <input type="text" name="duration" id="duration" class="form-control mb-2">
-
-                                <label for="thumbnail">Thumbnail Image</label>
-                                <input type="file" name="thumbnail" id="thumbnail" class="form-control">
-                                <p id="dimension-error" style="font-size: 13px; color: brown;"></p>
-                                <p class="mb-2" style="font-size: 13px; color: brown;">*thumbnail dimension should be 770px X 308px</p>
-
-                                <label for="image">Upload Image</label>
-                                <input type="file" name="image" id="image" class="form-control mb-2">
-
-                                <label for="tour_description">Tour Description</label>
-                                <textarea name="tour_description" id="tour_description" cols="20" rows="10" class="form-control mb-2"></textarea>
-
-                                <label for="price">Price</label>
-                                <input type="text" name="price" id="price" class="form-control mb-2">
-
-                                <label for="places_covered">Places Covered</label>
-                                <textarea name="places_covered" id="places_covered" cols="5" rows="3" class="form-control"></textarea>
-                                <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
-
-                                <label for="tour_highlights">Tour Highlights</label>
-                                <textarea name="tour_highlights" id="tour_highlights" cols="5" rows="3" class="form-control"></textarea>
-                                <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
-
-                                <label for="package_includes">Package Includes</label>
-                                <textarea name="package_includes" id="package_includes" cols="5" rows="3" class="form-control"></textarea>
-                                <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
-
-                                <label for="package_excludes">Package Excludes</label>
-                                <textarea name="package_excludes" id="package_excludes" cols="5" rows="3" class="form-control"></textarea>
-                                <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
-
-                                <label for="cancellation_policy">Cancellation Policy</label>
-                                <textarea name="cancellation_policy" id="cancellation_policy" cols="20" rows="10" class="form-control mb-2"></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-all">Add Package</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Title</td>
+                            <td>Duration</td>
+                            <td>Thumbnail</td>
+                            <td>Image</td>
+                            <td>Description</td>
+                            <td>Price</td>
+                            <td>Places Covered</td>
+                            <td>Tour Highlights</td>
+                            <td>Package Includes</td>
+                            <td>Package Excludes</td>
+                            <td>Cancellation Policy</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($packages as $package)
+                        <tr>
+                            <td>{{ $package->title }}</td>
+                            <td>{{ $package->duration }}</td>
+                            <td><img src="{{ asset('storage/' . $package->thumbnail) }}" alt="thumbnail" height="150px"></td>
+                            <td>
+                                @if($package->image == NULL)
+                                NA
+                                @else
+                                <img src="{{ asset('storage/' . $package->image) }}" alt="image" height="150px">
+                                @endif
+                            </td>
+                            <td>{!! nl2br($package->tour_description) !!}</td>
+                            <td>{{ $package->price }}</td>
+                            <td>
+                                @foreach (json_decode($package->places_covered) as $place)
+                                @if ($place == "null")
+                                <p>NA</p>
+                                @else
+                                {{ str_replace(['"', '\\r', '\\n'], '', $place) }}<br>
+                                @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach (json_decode($package->tour_highlights) as $highlight)
+                                @if ($highlight == "null")
+                                <p>NA</p>
+                                @else
+                                {{ str_replace(['"', '\\r', '\\n'], '', $highlight) }}<br>
+                                @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach (json_decode($package->package_includes) as $include)
+                                @if ($include == "null")
+                                <p>NA</p>
+                                @else
+                                {{ str_replace(['"', '\\r', '\\n'], '', $include) }}<br>
+                                @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach (json_decode($package->package_excludes) as $exclude)
+                                @if ($exclude == "null")
+                                <p>NA</p>
+                                @else
+                                {{ str_replace(['"', '\\r', '\\n'], '', $exclude) }}<br>
+                                @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @if ($package->cancellation_policy == null)
+                                <p>NA</p>
+                                @else
+                                {!! nl2br($package->cancellation_policy) !!}
+                                @endif
+                            </td>
+                            <td>
+
+                                <!-- edit -->
+                                <a data-bs-toggle="modal" data-bs-target="#PackageEditModal_{{ $package->id }}">
+                                    <i class="bx bx-edit"></i>
+                                </a>
+
+                                <!-- edit Modal -->
+                                <div class="modal fade" id="PackageEditModal_{{ $package->id }}" tabindex="-1" aria-labelledby="PackageEditModal_{{ $package->id }}Label" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="PackageEditModal_{{ $package->id }}Label">Edit Package</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ route('edit.tourism.package', ['tourismId' => $model->id, 'packageId' => $package->id]) }}" method="post" id="edit-package-form" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <label for="title">Title</label>
+                                                    <input type="text" name="title" id="title" class="form-control mb-2" value="{{ $package->title }}">
+
+                                                    <label for="duration">Duration</label>
+                                                    <input type="text" name="duration" id="duration" class="form-control mb-2" value="{{ $package->duration }}">
+
+                                                    <label for="thumbnail">Thumbnail Image</label>
+                                                    <input type="file" name="thumbnail" id="edit-thumbnail" class="form-control">
+                                                    <p id="edit-dimension-error" style="font-size: 13px; color: brown;"></p>
+                                                    <p class="mb-2" style="font-size: 13px; color: brown;">*thumbnail dimension should be 770px X 308px</p>
+
+                                                    <label for="image">Upload Image</label>
+                                                    <input type="file" name="image" id="image" class="form-control mb-2">
+
+                                                    <label for="tour_description">Tour Description</label>
+                                                    <textarea name="tour_description" id="tour_description" class="form-control mb-2" cols="30" rows="10">{{ str_replace('/\s+/', ' ', trim($package->tour_description)) }}</textarea>
+
+                                                    <label for="price">Price</label>
+                                                    <input type="text" name="price" id="price" class="form-control mb-2" value="{{ $package->price }}">
+
+                                                    <label for="places_covered">Places Covered</label>
+                                                    <textarea name="places_covered" id="places_covered" cols="5" rows="3" class="form-control">{{ str_replace(['"', '[', ']', 'null', '\r', '\n'], ' ', $package->places_covered) }}</textarea>
+                                                    <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
+
+                                                    <label for="tour_highlights">Tour Highlights</label>
+                                                    <textarea name="tour_highlights" id="tour_highlights" cols="5" rows="3" class="form-control">{{ str_replace(['"', '[', ']', 'null', '\r', '\n'], ' ', $package->tour_highlights) }}</textarea>
+                                                    <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
+
+                                                    <label for="package_includes">Package Includes</label>
+                                                    <textarea name="package_includes" id="package_includes" cols="5" rows="3" class="form-control">{{ str_replace(['"', '[', ']', 'null', '\r', '\n'], ' ', $package->package_includes) }}</textarea>
+                                                    <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
+
+                                                    <label for="package_excludes">Package Excludes</label>
+                                                    <textarea name="package_excludes" id="package_excludes" cols="5" rows="3" class="form-control">{{ str_replace(['"', '[', ']', 'null', '\r', '\n'], ' ', $package->package_excludes) }}</textarea>
+                                                    <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
+
+                                                    <label for="cancellation_policy">Cancellation Policy</label>
+                                                    <textarea name="cancellation_policy" id="cancellation_policy" cols="20" rows="10" class="form-control mb-2">{{ str_replace('/\s+/', ' ', trim($package->cancellation_policy)) }}</textarea>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-all">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- delete -->
+                                <a data-bs-toggle="modal" data-bs-target="#PackageDeleteModal_{{ $package->id }}">
+                                    <i class="bx bx-trash-alt"></i>
+                                </a>
+
+                                <!-- delete modal -->
+                                <div class="modal fade" id="PackageDeleteModal_{{ $package->id }}" tabindex="-1" aria-labelledby="PackageDeleteModal_{{ $package->id }}Label" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="PackageDeleteModal_{{ $package->id }}Label">Delete Package</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ route('delete.tourism.package', ['tourismId' => $model->id, 'packageId' => $package->id]) }}" method="post" id="delete-package-form" enctype="multipart/form-data">
+                                                @method ('DELETE')
+                                                @csrf
+                                                <div class="modal-body">
+                                                    Delete package {{ $package->title }} ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-all" data-bs-dismiss="modal">Delete</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
             </div>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>Title</td>
-                        <td>Duration</td>
-                        <td>Thumbnail</td>
-                        <td>Image</td>
-                        <td>Description</td>
-                        <td>Price</td>
-                        <td>Places Covered</td>
-                        <td>Tour Highlights</td>
-                        <td>Package Includes</td>
-                        <td>Package Excludes</td>
-                        <td>Cancellation Policy</td>
-                        <td>Actions</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($packages as $package)
-                    <tr>
-                        <td>{{ $package->title }}</td>
-                        <td>{{ $package->duration }}</td>
-                        <td><img src="{{ asset('storage/' . $package->thumbnail) }}" alt="thumbnail" height="150px"></td>
-                        <td>
-                            @if($package->image == NULL)
-                            NA
-                            @else
-                            <img src="{{ asset('storage/' . $package->image) }}" alt="image" height="150px"> 
-                            @endif
-                        </td>
-                        <td>{!! nl2br($package->tour_description) !!}</td>
-                        <td>{{ $package->price }}</td>
-                        <td>
-                            @foreach (json_decode($package->places_covered) as $place)
-                            @if ($place == "null")
-                            <p>NA</p>
-                            @else
-                            {{ str_replace(['"', '\\r', '\\n'], '', $place) }}<br>
-                            @endif
-                            @endforeach
-                        </td>
-                        <td>
-                            @foreach (json_decode($package->tour_highlights) as $highlight)
-                            @if ($highlight == "null")
-                            <p>NA</p>
-                            @else
-                            {{ str_replace(['"', '\\r', '\\n'], '', $highlight) }}<br>
-                            @endif
-                            @endforeach
-                        </td>
-                        <td>
-                            @foreach (json_decode($package->package_includes) as $include)
-                            @if ($include == "null")
-                            <p>NA</p>
-                            @else
-                            {{ str_replace(['"', '\\r', '\\n'], '', $include) }}<br>
-                            @endif
-                            @endforeach
-                        </td>
-                        <td>
-                            @foreach (json_decode($package->package_excludes) as $exclude)
-                            @if ($exclude == "null")
-                            <p>NA</p>
-                            @else
-                            {{ str_replace(['"', '\\r', '\\n'], '', $exclude) }}<br>
-                            @endif
-                            @endforeach
-                        </td>
-                        <td>
-                            @if ($package->cancellation_policy == null)
-                            <p>NA</p>
-                            @else
-                            {!! nl2br($package->cancellation_policy) !!}
-                            @endif
-                        </td>
-                        <td>
-
-                            <!-- edit -->
-                            <a data-bs-toggle="modal" data-bs-target="#PackageEditModal_{{ $package->id }}">
-                                <i class="bx bx-edit"></i>
-                            </a>
-
-                            <!-- edit Modal -->
-                            <div class="modal fade" id="PackageEditModal_{{ $package->id }}" tabindex="-1" aria-labelledby="PackageEditModal_{{ $package->id }}Label" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="PackageEditModal_{{ $package->id }}Label">Edit Package</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <form action="{{ route('edit.tourism.package', ['tourismId' => $model->id, 'packageId' => $package->id]) }}" method="post" id="edit-package-form" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="modal-body">
-                                                <label for="title">Title</label>
-                                                <input type="text" name="title" id="title" class="form-control mb-2" value="{{ $package->title }}">
-
-                                                <label for="duration">Duration</label>
-                                                <input type="text" name="duration" id="duration" class="form-control mb-2" value="{{ $package->duration }}">
-
-                                                <label for="thumbnail">Thumbnail Image</label>
-                                                <input type="file" name="thumbnail" id="edit-thumbnail" class="form-control">
-                                                <p id="edit-dimension-error" style="font-size: 13px; color: brown;"></p>
-                                                <p class="mb-2" style="font-size: 13px; color: brown;">*thumbnail dimension should be 770px X 308px</p>
-
-                                                <label for="image">Upload Image</label>
-                                                <input type="file" name="image" id="image" class="form-control mb-2">
-
-                                                <label for="tour_description">Tour Description</label>
-                                                <textarea name="tour_description" id="tour_description" class="form-control mb-2" cols="30" rows="10">{{ str_replace('/\s+/', ' ', trim($package->tour_description)) }}</textarea>
-
-                                                <label for="price">Price</label>
-                                                <input type="text" name="price" id="price" class="form-control mb-2" value="{{ $package->price }}">
-
-                                                <label for="places_covered">Places Covered</label>
-                                                <textarea name="places_covered" id="places_covered" cols="5" rows="3" class="form-control">{{ str_replace(['"', '[', ']', 'null', '\r', '\n'], ' ', $package->places_covered) }}</textarea>
-                                                <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
-
-                                                <label for="tour_highlights">Tour Highlights</label>
-                                                <textarea name="tour_highlights" id="tour_highlights" cols="5" rows="3" class="form-control">{{ str_replace(['"', '[', ']', 'null', '\r', '\n'], ' ', $package->tour_highlights) }}</textarea>
-                                                <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
-
-                                                <label for="package_includes">Package Includes</label>
-                                                <textarea name="package_includes" id="package_includes" cols="5" rows="3" class="form-control">{{ str_replace(['"', '[', ']', 'null', '\r', '\n'], ' ', $package->package_includes) }}</textarea>
-                                                <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
-
-                                                <label for="package_excludes">Package Excludes</label>
-                                                <textarea name="package_excludes" id="package_excludes" cols="5" rows="3" class="form-control">{{ str_replace(['"', '[', ']', 'null', '\r', '\n'], ' ', $package->package_excludes) }}</textarea>
-                                                <p class="mb-2" style="font-size: 13px; color: brown;">*seperate using either comma or newline, restrain from using both.</p>
-
-                                                <label for="cancellation_policy">Cancellation Policy</label>
-                                                <textarea name="cancellation_policy" id="cancellation_policy" cols="20" rows="10" class="form-control mb-2">{{ str_replace('/\s+/', ' ', trim($package->cancellation_policy)) }}</textarea>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-all">Save changes</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- delete -->
-                            <a data-bs-toggle="modal" data-bs-target="#PackageDeleteModal_{{ $package->id }}">
-                                <i class="bx bx-trash-alt"></i>
-                            </a>
-
-                            <!-- delete modal -->
-                            <div class="modal fade" id="PackageDeleteModal_{{ $package->id }}" tabindex="-1" aria-labelledby="PackageDeleteModal_{{ $package->id }}Label" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="PackageDeleteModal_{{ $package->id }}Label">Delete Package</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <form action="{{ route('delete.tourism.package', ['tourismId' => $model->id, 'packageId' => $package->id]) }}" method="post" id="delete-package-form" enctype="multipart/form-data">
-                                            @method ('DELETE')
-                                            @csrf
-                                            <div class="modal-body">
-                                                Delete package {{ $package->title }} ?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-all" data-bs-dismiss="modal">Delete</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-        </div>
 
 
 

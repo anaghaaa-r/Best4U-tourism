@@ -1,4 +1,3 @@
-<!-- Main Footer -->
 <footer class="main-footer">
     <!--Widgets Section-->
     <div class="widgets-section">
@@ -55,8 +54,8 @@
                                     <ul class="links">
                                         <li><a href="{{ url('/') }}">Home</a></li>
                                         <li><a href="{{ url('/aboutus') }}">About Us</a></li>
-                                        <li><a href="{{ url('/dubaispecialpackage') }}">Dubai Special Package</a></li>
-                                        <li><a href="{{ url('/blog')}}">Blog</a></li>
+                                        <li><a href="{{ route('dubaispecial') }}">Dubai Special Package</a></li>
+                                        <li><a href="{{ url('/blog') }}">Blog</a></li>
                                         <li><a href="{{ url('/contactus') }}">Contact Us</a></li>
                                     </ul>
                                 </div>
@@ -76,11 +75,9 @@
                             <div class="row clearfix">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <ul class="links">
-                                        <li><a href="visa.html">Visa</a></li>
-                                        <li><a href="ticketing.html">Ticketing</a></li>
-                                        <li><a href="travelinsurance.html">Travel Insurance</a></li>
-                                        <li><a href="hotelbooking.html">Hotel Booking</a></li>
-                                        <li><a href="conveyance.html">Conveyance</a></li>
+                                        @foreach ($services as $service)
+                                        <li><a href="{{ url('/service-detail', ['id' => $service->id]) }}">{{ $service->service }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
 
@@ -99,12 +96,9 @@
                             <div class="row clearfix">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <ul class="links">
-                                        <li><a href="gallery-one-col.html">India</a>
-
-                                        </li>
-                                        <li><a href="srilanka.html">Srilanka</a></li>
-                                        <li><a href="maldives.html">Maldives</a></li>
-                                        <li><a href="contact.html">Kerala</a></li>
+                                        @foreach ($destinations as $destination)
+                                        <li><a href="{{ url('/destination', ['id' => $destination->id]) }}">{{ $destination->title }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
 
@@ -123,10 +117,9 @@
                             <div class="row clearfix">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <ul class="links">
-                                        <li><a href="familytour.html">Family Tour</a></li>
-                                        <li><a href="honeymoon.html">Honeymoon</a></li>
-                                        <li><a href="pilgrimage.html">Pilgrimage</a></li>
-                                        <li><a href="medicaltourism.html">Medical Tourism</a></li>
+                                        @foreach ($tourismpackages as $tourism)
+                                        <li><a href="{{ url('/tourismpackage', ['id' => $tourism->id]) }}">{{ $tourism->title }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
 
@@ -144,7 +137,7 @@
         <div class="auto-container">
             <div class="inner clearfix">
                 <div class="copyright">Copyright &copy; 2023 Best 4 U Tourism L.L.C. All Rights Reserved.</div>
-                <div class="bottom-links"><a href="#">Powerd by</a> <a href="http://coperor.in/" target="_blank">Coperor</a></div>
+                <div class="bottom-links"><a href="#">Powered by</a> <a href="http://coperor.in/" target="_blank">Coperor</a></div>
             </div>
         </div>
     </div>

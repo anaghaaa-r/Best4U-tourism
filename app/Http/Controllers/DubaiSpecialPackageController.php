@@ -9,12 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class DubaiSpecialPackageController extends Controller
 {
-    // view package
-    public function view()
-    {
-        $packages = DubaiSpecialPackage::orderBy('id', 'desc')->get();
-        return view('admin.dubai-special', compact('packages'));
-    }
  
      // add package
     public function create(Request $request)

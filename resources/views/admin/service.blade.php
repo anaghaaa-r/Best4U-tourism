@@ -44,10 +44,9 @@
         <nav id="navbar" class="navbar nav-menu">
             <ul>
                 <li><a href="{{ url('/admin/dashboard') }}" class="nav-link scrollto"><i class="bx bxs-home"></i> <span>HOME</span></a></li>
-                <li><a href="{{ url('/admin/destinations') }}" class="nav-link scrollto"><i class="bx bxs-building-house"></i> <span>DESTINATIONS</span></a></li>
-                <li><a href="{{ url('/admin/tourismpackages') }}" class="nav-link scrollto"><i class="bx bxs-briefcase"></i> <span>TOURISM PACKAGES</span></a></li>
-                <li><a href="{{ url('/admin/dubaispecialpackages') }}" class="nav-link scrollto"><i class="bx bxs-file-archive"></i> <span>DUBAI SPECIAL PACKAGES</span></a></li>
-                <li><a href="{{ url('/admin/services') }}" class="nav-link scrollto  active"><i class="bx bxs-file-archive"></i> <span>SERVICES</span></a></li>
+                <li><a href="{{ url('/admin/packages') }}" class="nav-link scrollto"><i class="bx bxs-building-house"></i> <span>PACKAGES</span></a></li>
+                <li><a href="{{ url('/admin/services') }}" class="nav-link scrollto active"><i class="bx bxs-file-archive"></i> <span>SERVICES</span></a></li>
+                <li><a href="{{ url('/admin/blog') }}" class="nav-link scrollto"><i class="bx bxs-file-archive"></i> <span>BLOGS</span></a></li>
                 <li><a href="{{ url('/change-password') }}" class="nav-link scrollto"><i class="bx bxs-lock-open-alt"></i> <span>CHANGE PASSWORD</span></a></li>
             </ul>
         </nav><!-- .nav-menu -->
@@ -102,7 +101,7 @@
                             <h1 class="modal-title fs-5" id="AddServiceModalLabel">Add Service</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="{{ route('add.service') }}" method="post" id="add-service-form" enctype="multipart/form-data">
+                        <form action="{{ route('add.service') }}" method="post" id="add-service-form" class="add-service-form" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
                                 <label for="service">Service Name</label>
@@ -154,7 +153,7 @@
                                             <h1 class="modal-title fs-5" id="ServiceEditModal_{{ $service->id }}Label">Edit Service</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ route('edit.service', ['id' => $service->id]) }}" method="post" id="edit-service-form" enctype="multipart/form-data">
+                                        <form action="{{ route('edit.service', ['id' => $service->id]) }}" method="post" id="edit-service-form" class="edit-service-form" enctype="multipart/form-data">
                                             @csrf
                                             <div class="modal-body">
                                                 <label for="service">Service Name</label>
@@ -189,7 +188,7 @@
                                             <h1 class="modal-title fs-5" id="ServiceDeleteModal_{{ $service->id }}Label">Delete Service</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ route('delete.service', ['id' => $service->id]) }}" method="post" id="delete-service-form" enctype="multipart/form-data">
+                                        <form action="{{ route('delete.service', ['id' => $service->id]) }}" method="post" id="delete-service-form" class="delete-service-form" enctype="multipart/form-data">
                                             @method ('DELETE')
                                             @csrf
                                             <div class="modal-body">

@@ -26,15 +26,18 @@
 
     <div class="page-wrapper">
         <!-- Preloader -->
-        <div class="preloader">
+        <div class="preloader" id="preloader">
             <div class="icon"></div>
         </div>
 
+        @include ('includes.navbar')
+
         @yield ('content')
+
+        @include('includes.footer')
 
     </div>
     <!--End pagewrapper-->
-
     <!--Scroll to top-->
     <div class="scroll-to-top scroll-to-target" data-target="html"><span class="icon flaticon-back"></span></div>
 
@@ -49,7 +52,6 @@
     <script src="{{ asset('js/scrollbar.js') }}"></script>
     <script src="{{ asset('js/validate.js') }}"></script>
     <script src="{{ asset('js/element-in-view.js') }}"></script>
-
     <script src="{{ asset('js/custom-script.js') }}"></script>
 
 </body>

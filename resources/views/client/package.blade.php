@@ -1,152 +1,8 @@
 @extends ('layout.app')
 @section ('content')
 
-<!-- Main Header -->
-<header class="main-header header-style-one">
-    <div class="logo-desktop">
-        <div class="logo"><a href="{{ url('/') }}" title="Best for you - Tourism L.L.C"><img src="{{ asset('images/logo.png') }}" alt="Best for you - Tourism L.L.C" title="Best for you - Tourism L.L.C"></a></div>
-    </div>
-    <!-- Header Top -->
-    <div class="header-top header-top-one">
-        <div class="outer-container">
-            <div class="inner clearfix">
-                <div class="top-left clearfix">
-                    <!--Info-->
-                    <div class="info">
-                        <ul class="clearfix">
-                            <li class="phone"><a href="tel:+97142682901" target="_blank"><span class="icon fa fa-phone-alt"></span> Uae :+971 4268 2901</a></li>
-                            <li class="phone"><a href="tel:+919995573232" target="_blank"><span class="icon fa fa-phone-alt"></span> India :+91 999 557 3232</a></li>
-                            <li class="email"><a href="mailto:info@best4utourism.com" target="_blank"><span class="icon fa fa-envelope"></span> info@best4utourism.com</a></li>
-                        </ul>
-                    </div>
+<!-- navbar -->
 
-                    <div class="top-text"><span class="icon flaticon-surf-1"></span> Water Sports Activities, Experience The Thrill!.</div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Header Upper -->
-    <div class="header-upper">
-        <div class="outer-container">
-            <div class="inner clearfix">
-                <!--Logo-->
-                <div class="logo-box">
-                    <div class="logo"><a href="{{ url('/') }}" title="Best for you -  Tourism L.L.C"><img src="{{ asset('images/logo-two.png') }}" alt="Best for you -  Tourism L.L.C" title="Best for you -  Tourism L.L.C"></a></div>
-                </div>
-                <div class="nav-content clearfix">
-                    <div class="nav-outer clearfix">
-                        <!--Mobile Navigation Toggler-->
-                        <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
-
-                        <!-- Main Menu -->
-                        <nav class="main-menu navbar-expand-md navbar-light">
-                            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                <ul class="navigation clearfix">
-                                    <li class="dropdown"><a href="{{ url('/') }}">Home</a>
-
-                                    </li>
-                                    <li><a href="{{ ('/aboutus') }}">About Us</a>
-
-                                    </li>
-                                    <li class="dropdown"><a href="#">Services</a>
-                                        <ul>
-                                            @foreach ($services as $service)
-                                            <li><a href="{{ url('/service-detail', ['id' => $service->id]) }}">{{ $service->service }}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown current"><a href="#">Destinatons</a>
-                                        <ul>
-                                            @foreach ($destinations as $destination)
-
-                                            <li><a href="{{ url('/destination', ['id' => $destination->id]) }}">{{ $destination->title }}</a></li>
-
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Tourism Packages</a>
-                                        <ul>
-                                            <li><a href="familytour.html">Family Tour</a></li>
-                                            <li><a href="honeymoon.html">Honeymoon</a></li>
-                                            <li><a href="pilgrimage.html">Pilgrimage</a></li>
-                                            <li><a href="medicaltourism.html">Medical Tourism</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="{{ url('/dubaispecialpackage') }}">Dubai Special Package</a></li>
-                                    <li><a href="{{ url('/blog')}}">Blog</a></li>
-                                    <li><a href="{{ url('/contactus') }}">Contact Us</a></li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-
-                    <div class="other-links clearfix">
-                        <!--Book Btn-->
-                        <!--<div class="book-btn">
-                                <a href="yacht-rent-buy-single.html" class="theme-btn btn-style-one"><div class="btn-title">Book Now</div></a>
-                            </div>-->
-                        <!--Social Links-->
-                        <div class="social-links social-links-one">
-                            <ul class="clearfix">
-                                <li><a href="https://www.facebook.com/best4utourism" target="_blank"><span class="fab fa-facebook-f"></span></a></li>
-                                <li><a href="#"><span class="fab fa-instagram"></span></a></li>
-                                <li><a href="https://www.youtube.com/@bestforyoutourism4368" target="_blank"><span class="fab fa-youtube"></span></a></li>
-                            </ul>
-                        </div>
-                        <!--Nav Toggler-->
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Header Upper-->
-
-    <!-- Sticky Header  -->
-    <div class="sticky-header">
-        <div class="auto-container clearfix">
-            <!--Logo-->
-            <div class="logo pull-left">
-                <a href="{{ url('/') }}" title=""><img src="{{ asset('images/sticky-logo.png') }}" alt="" title=""></a>
-            </div>
-            <!--Right Col-->
-            <div class="pull-right clearfix">
-                <!-- Main Menu -->
-                <nav class="main-menu clearfix">
-                    <!--Keep This Empty / Menu will come through Javascript-->
-                </nav><!-- Main Menu End-->
-
-
-            </div>
-        </div>
-    </div><!-- End Sticky Menu -->
-
-    <!-- Mobile Menu  -->
-    <div class="mobile-menu">
-        <div class="menu-backdrop"></div>
-        <div class="close-btn"><span class="icon flaticon-targeting-cross"></span></div>
-
-        <nav class="menu-box">
-            <div class="nav-logo"><a href="{{ url('/') }}"><img src="{{ asset('images/nav-logo.png') }}" alt="" title=""></a></div>
-            <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-            <!--Social Links-->
-            <div class="social-links">
-                <ul class="clearfix">
-
-                    <li><a href="https://www.facebook.com/best4utourism" target="_blank"><span class="fab fa-facebook-square"></span></a></li>
-                    <li><a href="#"><span class="fab fa-instagram"></span></a></li>
-                    <li><a href="https://www.youtube.com/@bestforyoutourism4368" target="_blank"><span class="fab fa-youtube"></span></a></li>
-                </ul>
-            </div>
-        </nav>
-    </div><!-- End Mobile Menu -->
-</header>
-<!-- End Main Header -->
 
 <!--Search Popup-->
 
@@ -166,9 +22,11 @@
                 <h1>{{ $details->title }}</h1>
                 <div class="page-nav">
                     <ul class="bread-crumb clearfix">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#">Destinatons</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li id="tag-text"></li>
+                        @if ($model)
                         <li>{{ $model->title }}</li>
+                        @endif
                         <li>{{ $details->title }}</li>
                     </ul>
                 </div>
@@ -194,7 +52,7 @@
                                 <div class="left-info">
                                     <h3>{{ $details->title }}</h3>
                                     <div class="info">
-                                        <span class="icon flaticon-wall-clock"></span> {{ $details->duration }}
+                                        <span class="icon flaticon-wall-clock"></span>{{ $details->duration }}
                                     </div>
                                 </div>
 
@@ -204,17 +62,34 @@
                                 <img src="{{ asset('storage/' . $details->image) }}" alt="" title="">
                             </div>
 
+                            <!--<div class="specs">
+                                    <h4>Depature & Arrival Details</h4>
+                                    <table class="specs-table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Depature From</td>
+                                                <td>Kochi</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Depature Time</td>
+                                                <td>Nov 22,2023 at 08.00am</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Arrival to</td>
+                                                <td>Rajasthan</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Arrival time</td>
+                                                <td>Nov 23 04.00am [Approx]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>-->
+
                             <div class="text-block">
                                 <h4>Tour Details</h4>
-                                <p>{{ $details->tour_description }}</p>
+                                <p>{!! nl2br($details->tour_description) !!}</p>
                             </div>
-
-
-
-
-
-
-
 
 
                             <!--Included Material-->
@@ -231,7 +106,7 @@
                                                     <div class="text">
                                                         @foreach (json_decode($details->tour_highlights) as $highlight)
                                                         @if ($highlight == "null")
-                                                        <p></p>
+                                                        <p>NA</p>
                                                         @else
                                                         {{ str_replace(['"', '\\r', '\\n'], '', $highlight) }}<br>
                                                         @endif
@@ -250,7 +125,7 @@
                                                     <div class="text">
                                                         @foreach (json_decode($details->package_includes) as $include)
                                                         @if ($include == "null")
-                                                        <p></p>
+                                                        <p>NA</p>
                                                         @else
                                                         {{ str_replace(['"', '\\r', '\\n'], '', $include) }}<br>
                                                         @endif
@@ -269,7 +144,7 @@
                                                     <div class="text">
                                                         @foreach (json_decode($details->package_excludes) as $exclude)
                                                         @if ($exclude == "null")
-                                                        <p></p>
+                                                        <p>NA</p>
                                                         @else
                                                         {{ str_replace(['"', '\\r', '\\n'], '', $exclude) }}<br>
                                                         @endif
@@ -285,9 +160,7 @@
                                             </div>
                                             <div class="acc-content">
                                                 <div class="content">
-                                                    <div class="text">
-                                                        {!! nl2br($details->cancellation_policy) !!}
-                                                    </div>
+                                                    <div class="text">{!! nl2br($details->cancellation_policy) !!}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -306,21 +179,45 @@
                             <div class="facilities">
                                 <h4>Places Covered</h4>
                                 <div class="facility-box">
-
                                     <ul class="clearfix">
-
-                                        @foreach (json_decode($details->places_covered) as $place)
+                                        @foreach(json_decode($details->places_covered) as $place)
                                         @if ($place == "null")
-                                        <p></p>
+                                        <p>TBA</p>
                                         @else
                                         <li>{{ str_replace(['"', '\\r', '\\n'], '', $place) }}</li>
                                         @endif
                                         @endforeach
-                                        
                                     </ul>
                                 </div>
                             </div>
+
+
+
+
+
                         </div>
+
+                        <section class="subscribe-section style-three no-padding-top">
+                            <div class="auto-container">
+                                <div class="inner">
+                                    <div class="image-layer" style="background-image:url({{ asset('images/background/image-12.jpg') }});"></div>
+                                    <div class="title">
+                                        <h4>WhatsApp us</h4>
+                                        <div class="subtitle">WhatsApp us to Know More</div>
+
+                                        <div class="link-box mt-2">
+                                            <a href="https://api.whatsapp.com/send?phone=97142682901?&text=Hello, I would like to know more about your package and services" target="_blank" class="theme-btn btn-style-five2">
+                                                <div class="btn-title2"><span class="fab fa-whatsapp"></span> +971 4268 2901</div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+
 
                     </div>
                 </div>
@@ -339,52 +236,56 @@
                                         </div>
                                     </div>-->
                                 <div class="default-form main-booking-form">
-                                    <form method="post" action="#">
+                                    <form method="post" action="{{ route('package.enquiry') }}" id="enquiry-form">
+                                        @csrf
                                         <h5>Book Your Tour</h5>
 
                                         <div class="form-group">
                                             <div class="field-inner">
-                                                <input type="text" name="field-name" placeholder="Your Name" required="" value="">
+                                                <input type="text" name="name" placeholder="Your Name" required="" value="">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="field-inner">
-                                                <input type="text" name="field-name" placeholder="Phone" required="" value="">
+                                                <input type="text" name="phone" placeholder="Phone" required="" value="">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="field-inner">
-                                                <input type="text" name="field-name" placeholder="E-mail" required="" value="">
+                                                <input type="text" name="email" placeholder="E-mail" required="" value="">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="field-inner">
-                                                <select class="custom-select-box" name="field-name">
+                                                <select class="custom-select-box" name="adults">
                                                     <option>No. of Adults</option>
-                                                    <option>01</option>
-                                                    <option>02</option>
-                                                    <option>03</option>
-                                                    <option>04</option>
-                                                    <option>05</option>
+                                                    <option value="1">01</option>
+                                                    <option value="2">02</option>
+                                                    <option value="3">03</option>
+                                                    <option value="4">04</option>
+                                                    <option value="5">05</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="field-inner">
-                                                <select class="custom-select-box" name="field-name">
+                                                <select class="custom-select-box" name="children">
                                                     <option>No. of Children</option>
-                                                    <option>01</option>
-                                                    <option>02</option>
-                                                    <option>03</option>
-                                                    <option>04</option>
-                                                    <option>05</option>
+                                                    <option value="1">01</option>
+                                                    <option value="2">02</option>
+                                                    <option value="3">03</option>
+                                                    <option value="4">04</option>
+                                                    <option value="5">05</option>
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <input type="hidden" name="type" value="{{ $model->title }}">
+                                        <input type="hidden" name="package" value="{{ $details->title }}">
 
 
 
@@ -406,6 +307,7 @@
 
                                         <div class="form-group">
                                             <button type="submit" class="theme-btn"><span class="btn-title">Confirm Your Tour</span></button>
+                                            <p id="submit-message"></p>
                                         </div>
 
                                     </form>
@@ -468,7 +370,34 @@
 <!--News Section-->
 
 
-<!-- Main Footer -->
-@include ('include.footer')
+
 
 @endsection
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const tagText = document.getElementById('tag-text')
+    const currentURL = window.location.href;
+    console.log(currentURL)
+    if (currentURL.includes('destination'))
+    {
+        tagText.textContent = 'Destinations'
+    }
+    else if(currentURL.includes('tourismpackage'))
+    {
+        tagText.textContent = 'Tourism Packages'
+    }
+    else if(currentURL.includes('dubaispecialpackage'))
+    {
+        tagText.textContent = 'Dubai Special Package'
+    }
+    else
+    {
+        tagText.textContent = '.'
+    }
+})
+
+
+</script>
+
+<script src="{{ asset('custom/custom-enquiry.js') }}"></script>

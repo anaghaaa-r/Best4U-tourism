@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const addPackageForm = document.getElementById('add-package-form');
-    const editPackageForm = document.getElementById('edit-package-form');
-    const deletePackageForm = document.getElementById('delete-package-form');
+    const editPackageForm = document.querySelectorAll('edit-package-form');
+    const deletePackageForm = document.querySelectorAll('delete-package-form');
 
     const addDimensionError = document.getElementById('dimension-error');
     const addThumbnailInput = document.getElementById('thumbnail');
@@ -53,37 +53,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     addPackageForm.addEventListener('submit', handleFormSubmission);
-    editPackageForm.addEventListener('submit', handleFormSubmission);
 
-    deletePackageForm.addEventListener('submit', function (event) {
-        const form = event.target;
-        event.preventDefault();
-        const formData = new FormData(form);
+    editPackageForm.forEach((form) => {
+        form.addEventListener('submit', handleFormSubmission);
+    });
 
-        fetch(form.action, {
-            method: 'DELETE',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': form.querySelector('input[name="_token"]').value,
-            }
-        })
+    deletePackageForm.forEach((form) => {
+        form.addEventListener('submit', handleFormSubmission);
+    });
 
-            .then((response) => response.json())
-            .then((data) => {
-                if(data.status == true)
-                {
-                    alert(data.message);
-                    location.reload();
-                }
-                else
-                {
-                    alert(data.message)
-                    console.log(data.error);
-                }
-            })
-            .catch((error) => {
-                alert('An error occured, please try again later.');
-                console.log("Error: ", error);
-            })
-    })
 });

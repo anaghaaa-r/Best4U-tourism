@@ -46,10 +46,9 @@
         <nav id="navbar" class="navbar nav-menu">
             <ul>
                 <li><a href="{{ url('/admin/dashboard') }}" class="nav-link scrollto active"><i class="bx bxs-home"></i> <span>HOME</span></a></li>
-                <li><a href="{{ url('/admin/destinations') }}" class="nav-link scrollto"><i class="bx bxs-building-house"></i> <span>DESTINATIONS</span></a></li>
-                <li><a href="{{ url('/admin/tourismpackages') }}" class="nav-link scrollto"><i class="bx bxs-briefcase"></i> <span>TOURISM PACKAGES</span></a></li>
-                <li><a href="{{ url('/admin/dubaispecialpackages') }}" class="nav-link scrollto"><i class="bx bxs-file-archive"></i> <span>DUBAI SPECIAL PACKAGES</span></a></li>
+                <li><a href="{{ url('/admin/packages') }}" class="nav-link scrollto"><i class="bx bxs-building-house"></i> <span>PACKAGES</span></a></li>
                 <li><a href="{{ url('/admin/services') }}" class="nav-link scrollto"><i class="bx bxs-file-archive"></i> <span>SERVICES</span></a></li>
+                <li><a href="{{ url('/admin/blog') }}" class="nav-link scrollto"><i class="bx bxs-file-archive"></i> <span>BLOGS</span></a></li>
                 <li><a href="{{ url('/change-password') }}" class="nav-link scrollto"><i class="bx bxs-lock-open-alt"></i> <span>CHANGE PASSWORD</span></a></li>
             </ul>
         </nav><!-- .nav-menu -->
