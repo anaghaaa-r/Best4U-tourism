@@ -53,9 +53,7 @@ Route::post('/contactus', [BookingController::class, 'contactUsForm'])->name('co
 
 // admin methods
 
-Route::view('/admin/login', function () {
-    return view('admin.login');
-})->name('admin.login');
+Route::view('/admin/login', 'admin.login')->name('admin.login');
 
 Route::post('/login', [AuthController::class, 'login'])->name('admin.login');
 
